@@ -1,3 +1,32 @@
-h1 {
-    color: blue;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.logo{
+    width: 100%;
+    background-color: white;
+
+}
+.user{
+    width: 100%;
+    background-color: black;
+
+}
+.contents {
+    width: 100%;
+    background-color: gray;
+}
+
+header {
+    display: flex;
+}
+
+.logo, .user {
+    height: 100px;
+}
+
+.contents {
+    height: 1000px;
 }
