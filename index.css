@@ -1,32 +1,77 @@
-html, body {
+@import url("reset.css");
+
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-.logo{
-    width: 100%;
-    background-color: white;
-
-}
-.user{
-    width: 100%;
-    background-color: black;
-
-}
-.contents {
-    width: 100%;
-    background-color: gray;
 }
 
 header {
     display: flex;
 }
 
-.logo, .user {
+.logo {
+    display: flex;
+    width: 50%;
     height: 100px;
+    align-items: center;
+    /* 변경: justify-content를 flex-start로 설정하여 왼쪽 정렬 */
+    justify-content: flex-start;
+    background-color: lightblue;
+}
+
+.logo-image {
+    width: 100px;
+    height: 100px;
+    background-image: url("public/instagram-logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    /* 변경: justify-content를 flex-end로 설정하여 오른쪽 정렬 */
+    justify-content: flex-end;
+    width: 50%;
+    height: 100px;
+    background-color: lightgreen;
+}
+
+.user-profile-icon {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("public/user_icon.png");
 }
 
 .contents {
+    display: flex;
+    width: 100%;
     height: 1000px;
+    background-color: lightgoldenrodyellow;
+}
+
+.content-1 {
+    width: 23%;
+    height: 12%;
+    margin: 3%;
+    background-color: lightseagreen;
+}
+
+.content-1 img {
+    width: 100%;
+    height: 100%;
+}
+.content-1 .info {
+    display: flex;
+    justify-content: center;
+    background-color: lightpink;
+}
+
+.info p {
+    margin-right: 10px;
 }
