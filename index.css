@@ -1,3 +1,4 @@
+/* CSS 초기화 */
 @import url("reset.css");
 
 html,
@@ -11,17 +12,22 @@ header {
     display: flex;
 }
 
+main{
+    height: 100%;
+}
+
+/* 로고 이미지 */
+
 .logo {
     display: flex;
     width: 50%;
     height: 100px;
     align-items: center;
-    /* 변경: justify-content를 flex-start로 설정하여 왼쪽 정렬 */
     justify-content: flex-start;
     background-color: lightblue;
 }
 
-.logo-image {
+.logo .logo-image {
     width: 100px;
     height: 100px;
     background-image: url("public/instagram-logo.png");
@@ -30,17 +36,18 @@ header {
     background-position: center center;
 }
 
+/* 유저 프로필 */
+
 .user-profile {
     display: flex;
     align-items: center;
-    /* 변경: justify-content를 flex-end로 설정하여 오른쪽 정렬 */
     justify-content: flex-end;
     width: 50%;
     height: 100px;
     background-color: lightgreen;
 }
 
-.user-profile-icon {
+.user-profile .user-profile-icon {
     width: 50px;
     height: 50px;
     background-size: contain;
@@ -48,31 +55,34 @@ header {
     background-image: url("public/user_icon.png");
 }
 
+/* 컨텐츠 */
+
 .contents {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     height: 1000px;
     background-color: lightgoldenrodyellow;
 }
 
-.content-1 {
+.contents .content {
     width: 23%;
     height: 12%;
     margin: 3%;
     background-color: lightseagreen;
 }
 
-.content-1 img {
+.contents .content .content-image img {
     display: block;
     width: 100%;
     height: auto;
 }
-.content-1 .info {
+.contents .content .info {
     display: flex;
     justify-content: center;
     background-color: lightpink;
 }
 
-.info p {
+.contents .content .info p {
     margin-right: 10px;
 }
