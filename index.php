@@ -36,7 +36,7 @@
 <main>
     <div class="contents">
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-            <div class="content-1">
+            <div class="content">
                 <div class="content-image">
                     <a href="#">
                         <img src="public/content-image.webp"/>
@@ -44,14 +44,14 @@
                 </div>
                 <div class="info">
                     <p><?php echo $row['name']; ?></p>
-                    <p><?php echo $row['date']; ?></p>
                 </div>
             </div>
         <?php } ?>
     </div>
 </main>
-<?php
-mysqli_close($conn);
-?>
 </body>
 </html>
+
+<?php
+    mysqli_close($conn);
+?>
