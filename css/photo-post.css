@@ -1,0 +1,64 @@
+/* 콘텐츠 */
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.contents .image {
+    width: 70%;
+    height: 50%;
+    
+    background-color: aquamarine;    
+    background-image: url(../image/sticker-image.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.contents .description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 70%;
+    height: 10%;
+
+    background-color: lightcoral;
+}
+
+.contents .description div{
+    margin-right: 20px;
+}
+
+.contents .comments {
+    width: 70%;
+    height: 40%;
+
+    background-color: lightseagreen;
+}
+
+.contents .comments .comment{
+    width: 100%;
+    height: 20%;
+
+    background-color: lightgreen;
+}
+
+.contents .comments .comment .user-name{
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.contents .comments .comment .created-time{
+    font-size: 12px;
+}
+
+.contents .comments .comment .user-comment{
+    font-size: 16px;
+}
