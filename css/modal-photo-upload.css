@@ -1,4 +1,4 @@
-.signup-modal {
+.modal-photo-upload {
     position: absolute;
     display: none;
     justify-content: center;
@@ -10,20 +10,31 @@
     height: 100%;
 
     background-color: rgba(0, 0, 0, 0.4);
-
 } 
 
-.signup-modal form {
+.modal-photo-upload form {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-color: azure;
 
-    width: 30%;
+    width: 60%;
     height: auto;
 }
 
-.signup-modal form button{
+.modal-photo-upload form img{
+    width: 80%;
+}
+
+.modal-photo-upload form button{
     margin: 20px;
+}
+
+.modal-photo-upload form input{
+    width: 80%;
+}
+
+.modal-photo-upload form .button-wrapper{
+    display: flex;
 }

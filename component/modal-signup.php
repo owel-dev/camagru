@@ -1,5 +1,5 @@
-<div class="modal">
-    <form class ="modal-form" action="">
+<div class="signup-modal">
+    <form action="">
         <label>User Name</label>
         <input type="text">
 

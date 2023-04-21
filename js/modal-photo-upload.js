@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var trigger = document.querySelector('.user-profile');
-    var modal = document.querySelector('.signup-modal');
-    var modal_form = document.querySelector('.signup-modal form')
+    var trigger = document.querySelector('.photo-upload-button');
+    var modal = document.querySelector('.modal-photo-upload');
+    var modal_form = document.querySelector('.modal-photo-upload form')
 
     trigger.addEventListener('click', function () {
         modal.style.display = 'flex';
