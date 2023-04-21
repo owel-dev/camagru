@@ -1,6 +1,4 @@
 /* CSS 초기화 */
-@import url("reset.css");
-
 html,
 body {
     height: 100%;
@@ -37,7 +35,7 @@ main{
     width: 50%;
     height: 50%;
 
-    background-image: url("public/instagram-logo.png");
+    background-image: url("../image/instagram-logo.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left;
@@ -61,7 +59,7 @@ main{
     width: 50%;
     height: 50%;
 
-    background-image: url("public/camera-logo.png");
+    background-image: url("../image/camera-logo.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -87,6 +85,6 @@ main{
 
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url("public/user_icon.png");
+    background-image: url("../image/user_icon.png");
     background-position: right;
 }
