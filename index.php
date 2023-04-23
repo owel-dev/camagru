@@ -1,4 +1,4 @@
-<?php include '../config.php';?>
+<?php include 'config.php';?>
 
 <!DOCTYPE html>
 <html>
@@ -11,10 +11,10 @@
     </head>
     <body>
         <header>
-            <?php include COMPONENT_PATH . 'header.php'; ?>
+            <?php include INCLUDE_PATH . 'header.php'; ?>
         </header>
         <main>
-            <?php include COMPONENT_PATH . 'modal-signup.php';  ?>
+            <?php include INCLUDE_PATH . 'modal-signup.php';  ?>
             <div class="contents">
                 <div class="content">
                     <div class="content-image">

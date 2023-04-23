@@ -1,6 +1,8 @@
+<?php include '/config.php';?>
+
 <div class="modal-photo-upload">
     <form action="">
-        <img src="../image/content-image.webp">
+        <img src="<?php echo IMAGE_PATH;?>content-image.webp">
 
         <label>제목</label>
         <input type="text">

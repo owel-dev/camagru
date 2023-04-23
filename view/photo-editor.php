@@ -12,11 +12,11 @@
     </head>
     <body>
         <header>
-        <?php include COMPONENT_PATH . 'header.php'; ?>
+        <?php include INCLUDE_PATH . 'header.php'; ?>
         </header>
         <main>
-            <?php include COMPONENT_PATH . 'modal-signup.php';  ?>
-            <?php include COMPONENT_PATH . 'modal-photo-upload.php';  ?>
+            <?php include INCLUDE_PATH . 'modal-signup.php';  ?>
+            <?php include INCLUDE_PATH . 'modal-photo-upload.php';  ?>
             <div class="contents">
                 <div class="main-section">
                     <div class="album">

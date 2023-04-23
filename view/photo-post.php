@@ -4,8 +4,8 @@
 <html>
     <head>
         <title>photo-post</title>
-        <link rel="stylesheet" href="header.css" />
-        <link rel="stylesheet" href="board.css" />
+        <link rel="stylesheet" href="<?php echo CSS_PATH;?>header.css" />
+        <link rel="stylesheet" href="<?php echo CSS_PATH;?>board.css" />
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>reset.css" />
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>modal-signup.css" />
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>header.css" />
@@ -13,11 +13,11 @@
     </head>
     <body>
         <header>
-            <?php include COMPONENT_PATH . 'header.php'; ?>
+            <?php include INCLUDE_PATH . 'header.php'; ?>
             
         </header>
         <main>
-            <?php include COMPONENT_PATH . 'modal-signup.php';  ?>
+            <?php include INCLUDE_PATH . 'modal-signup.php';  ?>
             <div class="contents">
                 <div class="image"></div>
                 <div class="description">

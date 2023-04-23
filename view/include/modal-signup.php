@@ -1,13 +1,14 @@
+<?php include '/config.php';?>
+
 <div class="signup-modal">
-    <form action="">
         <label>User Name</label>
-        <input type="text">
+        <input type="text" name="name">
 
         <label>Email</label>
-        <input type="text">
+        <input type="text" name="email">
 
         <label>Password</label>
-        <input type="text">
+        <input type="text" name="password">
 
         <button type="submit">제출</button>
     </form>
