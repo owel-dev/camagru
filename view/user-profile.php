@@ -32,5 +32,6 @@
                 </div>
             </div>
         </main>
+        <script src="<?php echo JS_PATH;?>modal-signup.js"></script>
     </body>
 </html>
