@@ -2,7 +2,7 @@
 
 <div class="modal-photo-upload">
     <form action="">
-        <img src="<?php echo IMAGE_PATH;?>content-image.webp">
+        <img src="<?php echo IMAGE_PATH;?>content-image.jpeg">
 
         <label>제목</label>
         <input type="text">

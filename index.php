@@ -19,7 +19,7 @@
                 <div class="content">
                     <div class="content-image">
                         <a href="#">
-                            <img src="<?php echo IMAGE_PATH;?>content-image.webp" />
+                            <img src="<?php echo IMAGE_PATH;?>content-image.jpeg" />
                         </a>
                     </div>
                     <div class="info">
