@@ -7,4 +7,8 @@
     define("VIEW_PATH", "/view/");
     define("IMAGE_PATH", "/public/image/");
     define("PHP_FEAT_PATH", "/php-feature/");
+
+    define("NAME_VALIDATION", "^[a-zA-Z0-9]{3,20}$");
+    define("EMAIL_VALIDATION", "^[^@\s]+@[^@\s]+\.[^@\s]+$");
+    define("PASSWORD_VALIDATION", "^(?=.*[a-zA-Z])(?=.*\d).{8,20}$");
 ?>
