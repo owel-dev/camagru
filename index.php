@@ -1,4 +1,4 @@
-<?php include 'config.php';?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';?>
 
 <!DOCTYPE html>
 <html>
@@ -30,5 +30,11 @@
             </div>
         </main>
         <script src="<?php echo JS_PATH;?>modal-signup.js"></script>
+        <script>
+            const resultMessage = '<?php echo $result_message; ?>';
+            if (resultMessage) {
+                alert(resultMessage);
+            }
+        </script>
     </body>
 </html>
