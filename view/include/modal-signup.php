@@ -1,6 +1,6 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/env.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
 
     function validate_input($name, $email, $password) {
         if (!preg_match("/^[a-zA-Z0-9]{3,20}$/", $name)) {
@@ -26,10 +26,10 @@
 
         if (validate_input($name, $email, $password)) {
             
-            $db_servername = DB_SERVER_NAME;
-            $db_username = DB_USER_NAME;
-            $db_password = DB_PASSWORD;
-            $dbname = DB_DBNAME;
+            $db_servername = getenv('DB_SERVER_NAME');
+            $db_username = getenv('DB_USER_NAME');
+            $db_password = getenv('DB_PASSWORD');
+            $dbname = getenv('DB_DBNAME');
             
             $conn = new mysqli($db_servername, $db_username, $db_password, $dbname);
             if ($conn->connect_error) {
