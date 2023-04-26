@@ -50,3 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
         event.stopPropagation();
     });
 });
+
+function logout() {
+    document.cookie = "user-name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    location.reload();
+}

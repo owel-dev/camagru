@@ -12,8 +12,15 @@
     ?>    
     <a href="#" class="user-profile-icon"></a>
     <div class="auth-options">
-        <div class="auth-options-profile">프로필</div>
-        <div class="auth-options-signup">회원가입</div>
-        <div class="auth-options-signin">로그인</div>
+    <?php 
+        $user = $_COOKIE["user-name"];
+        if ($user) {
+            echo '<div class="auth-options-profile">'."프로필".'</div>';
+            echo '<div class="button-logout" onclick="logout()">'."로그아웃".'</div>';
+        } else {
+            echo '<div class="auth-options-signup">'."회원가입".'</div>';
+            echo '<div class="auth-options-signin">'."로그인".'</div>';
+        }
+    ?>   
     </div> 
 </div>
