@@ -2,7 +2,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
 
-    function validate_input($name, $email, $password) {
+    function validate_signup_input($name, $email, $password) {
         if (!preg_match("/^[a-zA-Z0-9]{3,20}$/", $name)) {
             return false;
         }
@@ -19,12 +19,12 @@
     }
 
     $result_message = "";
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signup-form') {
         $name = trim($_POST['name']);
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        if (validate_input($name, $email, $password)) {
+        if (validate_signup_input($name, $email, $password)) {
             
             $db_servername = getenv('DB_SERVER_NAME');
             $db_username = getenv('DB_USER_NAME');
@@ -45,7 +45,6 @@
             } else {
                 $result_message = "회원 가입에 실패했습니다:".$conn->error;
             }
-
             $stmt->close();
             $conn->close();
         } else {
@@ -56,12 +55,13 @@
 
 <div class="signup-modal">
     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <input type="hidden" name="form-name" value="signup-form">
         <label>Name</label>
-        <input type="text" name="name" required pattern="<?php echo NAME_VALIDATION;?>" 
+        <input type="text" name="name" required pattern="<?php echo NAME_VALIDATION;?>"
             title="이름은 5자 이상 20자 이하, 영대소문자 혹은 숫자만 가능합니다">
 
         <label>Email</label>
-        <input type="text" name="email" required pattern="<?php echo EMAIL_VALIDATION;?>" 
+        <input type="text" name="email" required pattern="<?php echo EMAIL_VALIDATION;?>"
             title="올바른 이메일 형식을 입력해주세요">
 
         <label>Password</label>
