@@ -94,29 +94,43 @@ main{
 }
 
 .auth-options {
+    display: none;
     position: absolute;
+    flex-direction: column;
+
+    width: 40%;
+    height: 100%;
+    
     top: 90%;
     right: 0;
     background-color: #f9f9f9;
-    width: 40%;
-    height: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    /* z-index: 1; */
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
 }
 
-.auth-options div{
-    width: 100%;
-    height: 33.33%;
+.auth-options .logged-in,
+.auth-options .logged-out{
     display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;    
 }
 
-.auth-options div:hover{
+.auth-options .logged-in div,
+.auth-options .logged-out div{
+    display: flex;
+
+    width: 100%;
+    height: 50%;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-options .logged-in div:hover,
+.auth-options .logged-out div:hover{
     background-color: #d5d5d5;
 }

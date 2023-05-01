@@ -55,8 +55,8 @@
     }
 ?>
 
-<div class="signin-modal">
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+<div class="modal-signin" style="display: none">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <input type="hidden" name="form-name" value="signin-form">
         <label>Name</label>
         <input type="text" name="name" required pattern=".{1,20}"

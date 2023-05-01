@@ -1,4 +1,4 @@
-.signup-modal {
+.modal-signup {
     position: absolute;
     display: none;
     justify-content: center;
@@ -13,7 +13,7 @@
 
 } 
 
-.signup-modal form {
+.modal-signup form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,6 +24,6 @@
     height: auto;
 }
 
-.signup-modal form button{
+.modal-signup form button{
     margin: 20px;
 }

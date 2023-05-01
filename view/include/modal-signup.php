@@ -53,7 +53,7 @@
     }
 ?>
 
-<div class="signup-modal">
+<div class="modal-signup" style="display: none">
     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
         <input type="hidden" name="form-name" value="signup-form">
         <label>Name</label>

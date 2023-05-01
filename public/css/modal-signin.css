@@ -1,4 +1,4 @@
-.signin-modal {
+.modal-signin {
     position: absolute;
     display: none;
     justify-content: center;
@@ -10,10 +10,9 @@
     height: 100%;
 
     background-color: rgba(0, 0, 0, 0.4);
-
 } 
 
-.signin-modal form {
+.modal-signin form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,6 +23,6 @@
     height: auto;
 }
 
-.signin-modal form button{
+.modal-signin form button{
     margin: 20px;
 }

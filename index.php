@@ -1,6 +1,5 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';?>
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,7 +31,8 @@
                 </div>
             </div>
         </main>
-        <script src="<?php echo JS_PATH;?>user-profile.js"></script>
+        <script type="module" src="<?php echo JS_PATH;?>modal-signup.js"></script>
+        <script type="module" src="<?php echo JS_PATH;?>modal-signin.js"></script>
         <script>
             const resultMessage = '<?php echo $result_message; ?>';
             if (resultMessage) {
