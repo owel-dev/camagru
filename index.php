@@ -1,4 +1,9 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';?>
+<?php 
+    $message = '';
+    if (isset($_GET['message']))
+        $message = $_GET['message'];
+?>
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +17,7 @@
     </head>
     <body>
         <header>
-            <?php include INCLUDE_PATH.'header.php'; ?>
+            <?php include INCLUDE_PATH.'header.php'; ?>x
         </header>
         <main>
             <?php include INCLUDE_PATH.'modal-signup.php';  ?>
@@ -34,11 +39,14 @@
         <script type="module" src="<?php echo JS_PATH;?>modal-signup.js"></script>
         <script type="module" src="<?php echo JS_PATH;?>modal-signin.js"></script>
         <script>
-            const resultMessage = '<?php echo $result_message; ?>';
+            var resultMessage = '<?php echo $message; ?>';
             if (resultMessage) {
                 alert(resultMessage);
+                
+                const url = new URL(window.location.href);
+                url.searchParams.delete('message');
+                window.history.replaceState(null, '', url);
             }
-            
         </script>
     </body>
 </html>

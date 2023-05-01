@@ -14,7 +14,6 @@
         return true;
     }
 
-    $result_message = "";
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-form') {
         $name = trim($_POST['name']);
         $password = trim($_POST['password']);
@@ -35,22 +34,21 @@
             $stmt->bind_param("s", $name);
             
             if (!$stmt->execute()) {
-                $result_message = "로그인이 실패했습니다.".$conn->error;
+                header("Location: /?message="."로그인이 실패했습니다.");
             } else {
                 $stmt->bind_result($stored_password);
                 $stmt->fetch();
                 if (password_verify($password, $stored_password)) {
                     setcookie("user-name", $name, time()+3600);
                     header("Location: /");
-                    exit();
                 } else {
-                    $result_message = "비밀번호가 일치하지 않습니다.";
+                    header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
                 }
             }
             $stmt->close();
             $conn->close();
         } else {
-            $result_message = "입력값이 유효하지 않습니다.";
+            header("Location: /?message="."입력값이 유효하지 않습니다.");
         }
     }
 ?>

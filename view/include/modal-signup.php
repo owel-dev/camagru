@@ -18,14 +18,12 @@
         return true;
     }
 
-    $result_message = "";
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signup-form') {
         $name = trim($_POST['name']);
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
         if (validate_signup_input($name, $email, $password)) {
-            
             $db_servername = getenv('DB_SERVER_NAME');
             $db_username = getenv('DB_USER_NAME');
             $db_password = getenv('DB_PASSWORD');
@@ -41,14 +39,15 @@
             
             $stmt->bind_param("sss", $name, $email, $hashed_password);
             if ($stmt->execute()) {
-                $result_message = "회원 가입이 완료되었습니다!";
+                header("Location: /?message="."회원 가입이 완료되었습니다!.");
+
             } else {
-                $result_message = "회원 가입에 실패했습니다:".$conn->error;
+                header("Location: /?message="."회원 가입에 실패했습니다:".$conn->error);
             }
             $stmt->close();
             $conn->close();
         } else {
-            $result_message = "입력값이 유효하지 않습니다.";
+            header("Location: /?message="."입력값이 유효하지 않습니다.");
         }
     }
 ?>
