@@ -94,7 +94,6 @@ main{
 }
 
 .auth-options {
-    display: none;
     position: absolute;
     flex-direction: column;
 

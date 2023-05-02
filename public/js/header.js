@@ -1,5 +1,3 @@
-import { onToggle } from "./toggle.js";
-
 function getCookie(name) {
     const value = "; " + document.cookie;
     const parts = value.split("; " + name + "=");
@@ -9,28 +7,46 @@ function getCookie(name) {
 function checkLoginStatus() {
     const user = getCookie("user-name");
     const welcomeElement = document.querySelector(".welcome-message");
-    const loggedInElement = document.querySelector(".logged-in");
-    const loggedOutElement = document.querySelector(".logged-out");
 
-    if (user) {
-        welcomeElement.innerText = user + "님 환영합니다!";
-        loggedInElement.style.display = "flex";
-        loggedOutElement.style.display = "none";
-    } else {
-        welcomeElement.innerText = "";
-        loggedInElement.style.display = "none";
-        loggedOutElement.style.display = "flex";
-    }
+    welcomeElement.innerText = user ? 
+        welcomeElement.innerText = user + "님 환영합니다!" :
+        '';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    onToggle('.user-profile-icon', '.auth-options');
+    var trigger = document.querySelector('.user-profile-icon');
+    var toggle = document.querySelector('.user-profile-toggle');
 
-    var logoutButton = document.querySelector('.auth-options-logout');
-    logoutButton.addEventListener('click', function (){
-        document.cookie = "user-name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        location.reload();
-    })
+    toggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', function () {
+        toggle.style.display = 'none';
+    });
+
+    trigger.addEventListener('click', function (event) {
+        event.stopPropagation();
+
+        if (toggle.style.display === 'none'){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    toggle.innerHTML = xhr.responseText;
+                    toggle.style.display = 'flex';
+                }
+            }
+
+            var url = getCookie("user-name") ? 
+                'view/include/toggle-logged-in.php' :
+                'view/include/toggle-logged-out.php';
+            xhr.open('GET', url, true);
+            xhr.send();
+        } else {
+            toggle.innerHTML = '';
+            toggle.style.display = 'none';
+        }
+    });
 });
 
 checkLoginStatus();
