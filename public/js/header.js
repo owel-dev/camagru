@@ -13,21 +13,20 @@ function checkLoginStatus() {
         '';
 }
 
+function logout() {
+    document.cookie = "user-name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    location.reload();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     var trigger = document.querySelector('.user-profile-icon');
     var toggle = document.querySelector('.user-profile-toggle');
-
-    toggle.addEventListener('click', function (event) {
-        event.stopPropagation();
-    });
 
     document.addEventListener('click', function () {
         toggle.style.display = 'none';
     });
 
-    trigger.addEventListener('click', function (event) {
-        event.stopPropagation();
-
+    trigger.addEventListener('click', function () {
         if (toggle.style.display === 'none'){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {

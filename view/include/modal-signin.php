@@ -53,17 +53,15 @@
     }
 ?>
 
-<div class="modal-signin" style="display: none">
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <input type="hidden" name="form-name" value="signin-form">
-        <label>Name</label>
-        <input type="text" name="name" required pattern=".{1,20}"
-            title="이름은 20자 이하입니다.">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <input type="hidden" name="form-name" value="signin-form">
+    <label>Name</label>
+    <input type="text" name="name" required pattern=".{1,20}"
+        title="이름은 20자 이하입니다.">
 
-        <label>Password</label>
-        <input type="password" name="password" required pattern=".{1,20}"
-            title="패스워드는 20자 이하입니다.">
+    <label>Password</label>
+    <input type="password" name="password" required pattern=".{1,20}"
+        title="패스워드는 20자 이하입니다.">
 
-        <button type="submit">제출</button>
-    </form>
-</div>
+    <button type="submit">제출</button>
+</form>

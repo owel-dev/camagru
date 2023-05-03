@@ -5,9 +5,8 @@
     <head>
         <title>photo-editor</title>
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>reset.css" />
-        <link rel="stylesheet" href="<?php echo CSS_PATH;?>modal-signup.css" />
-        <link rel="stylesheet" href="<?php echo CSS_PATH;?>modal-photo-upload.css" />
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>header.css" />
+        <link rel="stylesheet" href="<?php echo CSS_PATH;?>modal.css" />
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>photo-editor.css" />
     </head>
     <body>
@@ -15,13 +14,14 @@
         <?php include INCLUDE_PATH . 'header.php'; ?>
         </header>
         <main>
-            <?php include INCLUDE_PATH . 'modal-signup.php';  ?>
-            <?php include INCLUDE_PATH . 'modal-photo-upload.php';  ?>
+            <div class="modal" style="display: none;">
+                <div class="modal-div"></div>
+            </div>
             <div class="contents">
                 <div class="main-section">
                     <div class="album">
                         <div class="album-image">
-                            <button class="photo-upload-button">업로드</button>
+                            <button id="modal-photo-upload" class="photo-upload-button" onclick="handleModal(event)">업로드</button>
                         </div>
                     </div>
                     <div class="webcam-section">
@@ -36,7 +36,6 @@
                 <div class="stickers"></div>
             </div>
         </main>
-        <script src="<?php echo JS_PATH;?>modal-signup.js"></script>
-        <script src="<?php echo JS_PATH;?>modal-photo-upload.js"></script>
+        <script src="<?php echo JS_PATH;?>modal.js"></script>
     </body>
 </html>

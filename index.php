@@ -10,8 +10,7 @@
     <head>
         <title>index page</title>
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>reset.css" />
-        <link rel="stylesheet" href="<?php echo CSS_PATH;?>modal-signup.css" />
-        <link rel="stylesheet" href="<?php echo CSS_PATH;?>modal-signin.css" />
+        <link rel="stylesheet" href="<?php echo CSS_PATH;?>modal.css" />
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>header.css" />
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>index.css" />
     </head>
@@ -20,8 +19,9 @@
             <?php include INCLUDE_PATH.'header.php'; ?>x
         </header>
         <main>
-            <?php include INCLUDE_PATH.'modal-signup.php';  ?>
-            <?php include INCLUDE_PATH.'modal-signin.php';  ?>
+            <div class="modal" style="display: none;">
+                <div class="modal-div"></div>
+            </div>
             <div class="contents">
                 <div class="content">
                     <div class="content-image">
@@ -36,8 +36,7 @@
                 </div>
             </div>
         </main>
-        <script type="module" src="<?php echo JS_PATH;?>modal-signup.js"></script>
-        <script type="module" src="<?php echo JS_PATH;?>modal-signin.js"></script>
+        <script src="<?php echo JS_PATH;?>modal.js"></script>
         <script>
             var resultMessage = '<?php echo $message; ?>';
             if (resultMessage) {
