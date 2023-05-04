@@ -37,6 +37,7 @@
             </div>
         </main>
         <script src="<?php echo JS_PATH;?>modal.js"></script>
+        <script src="<?php echo JS_PATH;?>header.js"></script>
         <script>
             var resultMessage = '<?php echo $message; ?>';
             if (resultMessage) {

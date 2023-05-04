@@ -1,2 +1,4 @@
 hiddenlink
 .env
+composer*
+vendor

@@ -39,7 +39,7 @@
                 $stmt->bind_result($stored_password);
                 $stmt->fetch();
                 if (password_verify($password, $stored_password)) {
-                    setcookie("user-name", $name, time()+3600);
+                    setcookie("user-name", $name, time()+3600, "/");
                     header("Location: /");
                 } else {
                     header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
@@ -52,7 +52,6 @@
         }
     }
 ?>
-
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <input type="hidden" name="form-name" value="signin-form">
     <label>Name</label>

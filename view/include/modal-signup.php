@@ -41,7 +41,7 @@
             if ($stmt->execute()) {
                 header("Location: /?message="."회원 가입이 완료되었습니다!.");
             } else {
-                header("Location: /?message="."회원 가입에 실패했습니다:".$conn->error);
+                header("Location: /?message="."회원 가입에 실패했습니다:");
             }
             $stmt->close();
             $conn->close();
