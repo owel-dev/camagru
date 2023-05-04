@@ -1,21 +1,16 @@
-function getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-}
-
-function checkLoginStatus() {
-    const user = getCookie("user-name");
-    const welcomeElement = document.querySelector(".welcome-message");
-
-    welcomeElement.innerText = user ? 
-        welcomeElement.innerText = user + "님 환영합니다!" :
-        '';
-}
-
 function handleLogout() {
-    document.cookie = "user-name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    location.reload();
+    fetch('/view/include/logout.php', {
+        method: 'POST',
+        credentials: 'same-origin'
+    }).then((response) => {
+        if (response.status === 200){
+            location.reload();
+        } else {
+            console.error('Logout Failed');
+        }
+    }).catch((error) => {
+        console.error('Error: ', error);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -35,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     toggle.style.display = 'flex';
                 }
             }
-
-            var url = getCookie("user-name") ? 
+            var elements = document.getElementsByClassName('welcome-message');
+            url = (elements.length > 0) ? 
                 'view/include/toggle-logged-in.php' :
                 'view/include/toggle-logged-out.php';
             xhr.open('GET', url, true);
@@ -47,5 +42,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-checkLoginStatus();

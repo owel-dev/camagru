@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    
     require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
 
@@ -15,10 +17,10 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-form') {
-        $name = trim($_POST['name']);
+        $username = trim($_POST['name']);
         $password = trim($_POST['password']);
 
-        if (validate_sign_input($name, $password)) {
+        if (validate_sign_input($username, $password)) {
             
             $db_servername = getenv('DB_SERVER_NAME');
             $db_username = getenv('DB_USER_NAME');
@@ -31,7 +33,7 @@
             }
 
             $stmt = $conn->prepare("select password from user where name=?");
-            $stmt->bind_param("s", $name);
+            $stmt->bind_param("s", $username);
             
             if (!$stmt->execute()) {
                 header("Location: /?message="."로그인이 실패했습니다.");
@@ -39,7 +41,7 @@
                 $stmt->bind_result($stored_password);
                 $stmt->fetch();
                 if (password_verify($password, $stored_password)) {
-                    setcookie("user-name", $name, time()+3600, "/");
+                    $_SESSION['username'] = $username;
                     header("Location: /");
                 } else {
                     header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
