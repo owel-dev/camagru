@@ -32,15 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-for
             die("Connection failed: ".$conn->connect_error);
         }
 
-        $stmt = $conn->prepare("select password from user where username=?");
+        $stmt = $conn->prepare("select password, need_verification from user where username=?");
         $stmt->bind_param("s", $username);
         
         if ($stmt->execute()) {
-            $stmt->bind_result($stored_password);
+            $stmt->bind_result($stored_password, $stored_need_verification);
             $stmt->fetch();
             if (password_verify($password, $stored_password)) {
                 $_SESSION['username'] = $username;
-                header("Location: /view/need-verify.php");
+                if ($stored_need_verification == 0) {
+                    header("Location: /");
+                } else {
+                    header("Location: /view/need-verify.php");
+                }
             } else {
                 header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
             }
