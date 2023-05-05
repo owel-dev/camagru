@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-for
             $stmt->fetch();
             if (password_verify($password, $stored_password)) {
                 $_SESSION['username'] = $username;
-                header("Location: /view/need_verify.php");
+                header("Location: /view/need-verify.php");
             } else {
                 header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
             }
