@@ -1,58 +1,58 @@
 <?php
-    session_start();
-    
-    require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
+session_start();
 
-    function validate_sign_input($username, $password) {
-        if (!preg_match("/^.{1,20}$/", $username)) {
-            return false;
-        }
+require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
 
-        if (!preg_match("/^.{1,20}$/", $password)) {
-            return false;
-        }
-
-        return true;
+function validate_sign_input($username, $password) {
+    if (!preg_match("/^.{1,20}$/", $username)) {
+        return false;
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-form') {
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
+    if (!preg_match("/^.{1,20}$/", $password)) {
+        return false;
+    }
 
-        if (validate_sign_input($username, $password)) {
-            
-            $db_servername = getenv('DB_SERVER_NAME');
-            $db_username = getenv('DB_USER_NAME');
-            $db_password = getenv('DB_PASSWORD');
-            $dbname = getenv('DB_DBNAME');
-            
-            $conn = new mysqli($db_servername, $db_username, $db_password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: ".$conn->connect_error);
-            }
+    return true;
+}
 
-            $stmt = $conn->prepare("select password from user where username=?");
-            $stmt->bind_param("s", $username);
-            
-            if ($stmt->execute()) {
-                $stmt->bind_result($stored_password);
-                $stmt->fetch();
-                if (password_verify($password, $stored_password)) {
-                    $_SESSION['username'] = $username;
-                    header("Location: /view/need_verify.php");
-                } else {
-                    header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
-                }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-form') {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    if (validate_sign_input($username, $password)) {
+        
+        $db_servername = getenv('DB_SERVER_NAME');
+        $db_username = getenv('DB_USER_NAME');
+        $db_password = getenv('DB_PASSWORD');
+        $dbname = getenv('DB_DBNAME');
+        
+        $conn = new mysqli($db_servername, $db_username, $db_password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: ".$conn->connect_error);
+        }
+
+        $stmt = $conn->prepare("select password from user where username=?");
+        $stmt->bind_param("s", $username);
+        
+        if ($stmt->execute()) {
+            $stmt->bind_result($stored_password);
+            $stmt->fetch();
+            if (password_verify($password, $stored_password)) {
+                $_SESSION['username'] = $username;
+                header("Location: /view/need_verify.php");
             } else {
-                header("Location: /?message="."로그인이 실패했습니다.");
+                header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
             }
-            $stmt->close();
-            $conn->close();
         } else {
-            header("Location: /?message="."입력값이 유효하지 않습니다.");
+            header("Location: /?message="."로그인이 실패했습니다.");
         }
+        $stmt->close();
+        $conn->close();
+    } else {
+        header("Location: /?message="."입력값이 유효하지 않습니다.");
     }
+}
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <input type="hidden" name="form-name" value="signin-form">

@@ -1,8 +1,8 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';?>
 <?php 
-    $message = '';
-    if (isset($_GET['message']))
-        $message = $_GET['message'];
+$message = '';
+if (isset($_GET['message']))
+    $message = $_GET['message'];
 ?>
 
 <!DOCTYPE html>

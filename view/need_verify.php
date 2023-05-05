@@ -31,7 +31,6 @@ if ($stmt->execute()) {
     header("Location: /?message="."DB 조회 실패.");
 }
 
-
 ?>
 
 <h1>이메일 인증이 필요합니다!</h1>
