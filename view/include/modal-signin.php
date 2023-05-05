@@ -4,8 +4,8 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
 
-    function validate_sign_input($name, $password) {
-        if (!preg_match("/^.{1,20}$/", $name)) {
+    function validate_sign_input($username, $password) {
+        if (!preg_match("/^.{1,20}$/", $username)) {
             return false;
         }
 
@@ -17,7 +17,7 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-form') {
-        $username = trim($_POST['name']);
+        $username = trim($_POST['username']);
         $password = trim($_POST['password']);
 
         if (validate_sign_input($username, $password)) {
@@ -32,7 +32,7 @@
                 die("Connection failed: ".$conn->connect_error);
             }
 
-            $stmt = $conn->prepare("select password from user where name=?");
+            $stmt = $conn->prepare("select password from user where username=?");
             $stmt->bind_param("s", $username);
             
             if ($stmt->execute()) {
@@ -56,8 +56,8 @@
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <input type="hidden" name="form-name" value="signin-form">
-    <label>Name</label>
-    <input type="text" name="name" required pattern=".{1,20}"
+    <label>User Name</label>
+    <input type="text" name="username" required pattern=".{1,20}"
         title="이름은 20자 이하입니다.">
 
     <label>Password</label>

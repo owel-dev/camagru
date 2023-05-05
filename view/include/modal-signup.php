@@ -2,8 +2,8 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
 
-    function validate_signup_input($name, $email, $password) {
-        if (!preg_match("/^[a-zA-Z0-9]{3,20}$/", $name)) {
+    function validate_signup_input($username, $email, $password) {
+        if (!preg_match("/^[a-zA-Z0-9]{3,20}$/", $username)) {
             return false;
         }
 
@@ -34,11 +34,11 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signup-form') {
-        $name = trim($_POST['name']);
+        $username = trim($_POST['username']);
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        if (validate_signup_input($name, $email, $password)) {
+        if (validate_signup_input($username, $email, $password)) {
             $db_servername = getenv('DB_SERVER_NAME');
             $db_username = getenv('DB_USER_NAME');
             $db_password = getenv('DB_PASSWORD');
@@ -48,14 +48,14 @@
             if ($conn->connect_error) {
                 die("Connection failed: ".$conn->connect_error);
             }
-            $stmt = $conn->prepare("INSERT INTO user (name, email, password, need_verification) VALUES (?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO user (username, email, password, need_verification) VALUES (?, ?, ?, ?)");
 
             $token = bin2hex(random_bytes(32)); // 64자리의 무작위 문자열을 생성합니다.
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
-            $stmt->bind_param("ssss", $name, $email, $hashed_password, $token);
+            $stmt->bind_param("ssss", $username, $email, $hashed_password, $token);
             if ($stmt->execute()) {
-                send_verification_mail($email, $name, $token);
+                send_verification_mail($email, $username, $token);
                 header("Location: /?message="."회원 가입이 완료되었습니다!.");
             } else {
                 header("Location: /?message="."회원 가입에 실패했습니다:");
@@ -70,8 +70,8 @@
 
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
     <input type="hidden" name="form-name" value="signup-form">
-    <label>Name</label>
-    <input type="text" name="name" required pattern="<?php echo NAME_VALIDATION;?>"
+    <label>User Name</label>
+    <input type="text" name="username" required pattern="<?php echo NAME_VALIDATION;?>"
         title="이름은 5자 이상 20자 이하, 영대소문자 혹은 숫자만 가능합니다">
 
     <label>Email</label>

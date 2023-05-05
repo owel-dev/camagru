@@ -16,7 +16,7 @@ if ($conn->connect_error) {
     die("Connection failed: ".$conn->connect_error);
 }
 
-$stmt = $conn->prepare("SELECT need_verification FROM user WHERE name=?");
+$stmt = $conn->prepare("SELECT need_verification FROM user WHERE username=?");
 $stmt->bind_param("s", $query_name);
 
 $conn2 = new mysqli($db_servername, $db_name, $db_password, $dbname);
@@ -26,7 +26,7 @@ if ($stmt->execute()) {
     $stmt->fetch();
 
     if ($query_token === $stored_token){
-        $stmt2 = $conn2->prepare("UPDATE user SET need_verification = 0 WHERE name=?");
+        $stmt2 = $conn2->prepare("UPDATE user SET need_verification = 0 WHERE username=?");
         $stmt2->bind_param("s", $query_name2);
 
         if ($stmt2->execute()) {

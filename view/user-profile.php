@@ -17,7 +17,7 @@
             die("Connection failed: ".$conn->connect_error);
         }
 
-        $stmt = $conn->prepare("SELECT name, email FROM user WHERE name=?");
+        $stmt = $conn->prepare("SELECT username, email FROM user WHERE username=?");
         $stmt->bind_param("s", $username);
 
         if ($stmt->execute()) {

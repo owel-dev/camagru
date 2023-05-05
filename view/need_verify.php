@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 $username = $_SESSION['username'];
 
-$stmt = $conn->prepare("select need_verification from user where name=?");
+$stmt = $conn->prepare("select need_verification from user where username=?");
 $stmt->bind_param("s", $username);
 
 if ($stmt->execute()) {

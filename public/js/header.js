@@ -4,7 +4,8 @@ function handleLogout() {
         credentials: 'same-origin'
     }).then((response) => {
         if (response.status === 200){
-            location.reload();
+            alert("로그아웃 하였습니다!");
+            window.location.href = "/";
         } else {
             console.error('Logout Failed');
         }
