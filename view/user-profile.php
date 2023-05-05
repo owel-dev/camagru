@@ -44,8 +44,8 @@ if (isset($_SESSION['username'])) {
         <link rel="stylesheet" href="<?php echo CSS_PATH;?>user-profile.css" />
     </head>
     <body>
-        <header>
-            <?php include INCLUDE_PATH.'header.php'; ?>
+        <header></header>
+            <?php require_once INCLUDE_PATH.'header.php'; ?>
         </header>
         <main>
             <div class="modal" style="display: none;">

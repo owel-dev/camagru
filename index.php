@@ -16,7 +16,7 @@ if (isset($_GET['message']))
     </head>
     <body>
         <header>
-            <?php include INCLUDE_PATH.'header.php'; ?>
+            <?php require_once INCLUDE_PATH.'header.php'; ?>
         </header>
         <main>
             <div class="modal" style="display: none;">

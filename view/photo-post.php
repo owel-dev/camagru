@@ -13,11 +13,11 @@
     </head>
     <body>
         <header>
-            <?php include INCLUDE_PATH . 'header.php'; ?>
+            <?php require_once INCLUDE_PATH . 'header.php'; ?>
             
         </header>
         <main>
-            <?php include INCLUDE_PATH . 'modal-signup.php';  ?>
+            <?php require_once INCLUDE_PATH . 'modal-signup.php';  ?>
             <div class="contents">
                 <div class="image"></div>
                 <div class="description">
