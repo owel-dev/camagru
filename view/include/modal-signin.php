@@ -35,17 +35,17 @@
             $stmt = $conn->prepare("select password from user where name=?");
             $stmt->bind_param("s", $username);
             
-            if (!$stmt->execute()) {
-                header("Location: /?message="."로그인이 실패했습니다.");
-            } else {
+            if ($stmt->execute()) {
                 $stmt->bind_result($stored_password);
                 $stmt->fetch();
                 if (password_verify($password, $stored_password)) {
                     $_SESSION['username'] = $username;
-                    header("Location: /");
+                    header("Location: /view/need_verify.php");
                 } else {
                     header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
                 }
+            } else {
+                header("Location: /?message="."로그인이 실패했습니다.");
             }
             $stmt->close();
             $conn->close();

@@ -18,6 +18,21 @@
         return true;
     }
 
+    function send_verification_mail($to, $username, $token) {
+        $to = 'krkr728@gmail.com';
+        $subject = 'camagru 인증 메일';
+
+        $verificationLink = "https://camagru.owel.dev/view/include/verify.php?username=$username&token=$token";
+        $message = "회원 가입을 확인하려면 다음 링크를 클릭하십시오: $verificationLink";
+
+        $headers = 'From: mailer_ulee@naver.com' . "\r\n" .
+                'Reply-To: no-reply@naver.com' . "\r\n";
+
+        if (!mail($to, $subject, $message, $headers)) {
+            echo "Email sending failed.";
+        }
+    }
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signup-form') {
         $name = trim($_POST['name']);
         $email = trim($_POST['email']);
@@ -33,12 +48,14 @@
             if ($conn->connect_error) {
                 die("Connection failed: ".$conn->connect_error);
             }
+            $stmt = $conn->prepare("INSERT INTO user (name, email, password, need_verification) VALUES (?, ?, ?, ?)");
 
-            $stmt = $conn->prepare("INSERT INTO user (name, email, password) VALUES (?, ?, ?)");
+            $token = bin2hex(random_bytes(32)); // 64자리의 무작위 문자열을 생성합니다.
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
-            $stmt->bind_param("sss", $name, $email, $hashed_password);
+            $stmt->bind_param("ssss", $name, $email, $hashed_password, $token);
             if ($stmt->execute()) {
+                send_verification_mail($email, $name, $token);
                 header("Location: /?message="."회원 가입이 완료되었습니다!.");
             } else {
                 header("Location: /?message="."회원 가입에 실패했습니다:");

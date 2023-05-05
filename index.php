@@ -16,7 +16,7 @@
     </head>
     <body>
         <header>
-            <?php include INCLUDE_PATH.'header.php'; ?>x
+            <?php include INCLUDE_PATH.'header.php'; ?>
         </header>
         <main>
             <div class="modal" style="display: none;">
