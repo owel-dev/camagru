@@ -3,7 +3,7 @@
 ?>
 
 <div class="logo">
-    <a href="#" class="logo-image"></a>
+    <a href="/" class="logo-image"></a>
 </div>
 <div class="camera">
     <a href="#" class="camera-logo"></a>

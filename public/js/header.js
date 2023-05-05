@@ -13,6 +13,11 @@ function handleLogout() {
     });
 }
 
+function moveProfile() {
+    window.location.href = "/view/user-profile.php";
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
     var trigger = document.querySelector('.user-profile-icon');
     var toggle = document.querySelector('.user-profile-toggle');
@@ -32,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             var elements = document.getElementsByClassName('welcome-message');
             url = (elements.length > 0) ? 
-                'view/include/toggle-logged-in.php' :
-                'view/include/toggle-logged-out.php';
+                '/view/include/toggle-logged-in.php' :
+                '/view/include/toggle-logged-out.php';
             xhr.open('GET', url, true);
             xhr.send();
         } else {
