@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
+require_once INCLUDE_PATH.'send-email.php';
 
 function validate_signup_input($username, $email, $password) {
     if (!preg_match("/^[a-zA-Z0-9]{3,20}$/", $username)) {
@@ -16,21 +17,6 @@ function validate_signup_input($username, $email, $password) {
     }
 
     return true;
-}
-
-function send_verification_mail($to, $username, $token) {
-    $to = 'krkr728@gmail.com';
-    $subject = 'camagru 인증 메일';
-
-    $verificationLink = "https://camagru.owel.dev/view/include/verify.php?username=$username&token=$token";
-    $message = "회원 가입을 확인하려면 다음 링크를 클릭하십시오: $verificationLink";
-
-    $headers = 'From: mailer_ulee@naver.com' . "\r\n" .
-            'Reply-To: no-reply@naver.com' . "\r\n";
-
-    if (!mail($to, $subject, $message, $headers)) {
-        echo "Email sending failed.";
-    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signup-form') {
