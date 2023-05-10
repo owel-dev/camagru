@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/env-loader.php';
-require_once INCLUDE_PATH.'send-email.php';
+require_once INCLUDE_PATH.'send-verify-email.php';
 
 function validate_signup_input($username, $email, $password) {
     if (!preg_match("/^[a-zA-Z0-9]{3,20}$/", $username)) {
@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signup-for
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <h2>회원가입</h2> <br/>
     <input type="hidden" name="form-name" value="signup-form">
     <label>User Name</label>
     <input type="text" name="username" required pattern="<?php echo NAME_VALIDATION;?>"

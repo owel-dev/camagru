@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-for
             $stmt->fetch();
             if (password_verify($password, $stored_password)) {
                 $_SESSION['username'] = $username;
-                if ($stored_need_verification == 0) {
-                    header("Location: /");
-                } else {
+                if ($stored_need_verification) {
                     header("Location: /view/need-verify.php");
+                } else {
+                    header("Location: /");
                 }
             } else {
                 header("Location: /?message="."비밀번호가 일치하지 않습니다."); 
@@ -59,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-for
 }
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <h2>로그인</h2> <br/>
     <input type="hidden" name="form-name" value="signin-form">
     <label>User Name</label>
     <input type="text" name="username" required pattern=".{1,20}"
@@ -68,5 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['form-name'] === 'signin-for
     <input type="password" name="password" required pattern=".{1,20}"
         title="패스워드는 20자 이하입니다.">
 
-    <button type="submit">제출</button>
+    <button type="submit">제출</button> 
+    <button id="modal-password-modify" onClick="handleModal(event)">비밀번호 재설정</button>
 </form>
