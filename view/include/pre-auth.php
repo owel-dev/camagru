@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])) {
     if ($stmt->execute()) {
         $stmt->bind_result($stored_username, $stored_email, $stored_need_verification);
         $stmt->fetch();
-        if ($stored_need_verification != 0) {
+        if ($stored_need_verification) {
             header("Location: /view/need-verify.php");
         }
     } else {

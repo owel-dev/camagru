@@ -12,5 +12,6 @@ define("NAME_VALIDATION", "^[a-zA-Z0-9]{3,20}$");
 define("EMAIL_VALIDATION", "^[^@\s]+@[^@\s]+\.[^@\s]+$");
 define("PASSWORD_VALIDATION", "^(?=.*[a-zA-Z])(?=.*\d).{8,20}$");
 define("MAIL_VERIFY_PAGE_PATH", "https://camagru.owel.dev/view/include/verify.php");
+define("MAIL_MODIFY_PAGE_PATH", "https://camagru.owel.dev/view/include/password-modify.php");
 define("MAIL_SENDER", "mailer_ulee@naver.com");
 ?>

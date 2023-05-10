@@ -24,13 +24,12 @@ if ($stmt->execute()) {
     $stmt->bind_result($stored_need_verification);
     $stmt->fetch();
 
-    if ($stored_need_verification == 0) {
-        header("Location: /");
+    if (!$stored_need_verification) {
+        header("Location: /?message="."토큰 조회 성공.");
     }
 } else {
     header("Location: /?message="."DB 조회 실패.");
 }
-
 ?>
 
 <h1>이메일 인증이 필요합니다!</h1>
